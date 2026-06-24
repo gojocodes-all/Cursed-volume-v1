@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cursed Catapult Volume Slider</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="card">
+      <p class="eyebrow">Cursed JavaScript Projects #1</p>
+      <h1>Catapult Volume Slider</h1>
+      <p class="subtitle">
+        Pull the knob below zero, release it, and let physics decide your volume.
+        Terrible UX. Beautiful nonsense.
+      </p>
+
+      <div class="status-panel">
+        <div>
+          <span class="label">Volume</span>
+          <strong id="volumeText">0%</strong>
+        </div>
+        <div>
+          <span class="label">Pull Force</span>
+          <strong id="forceText">0</strong>
+        </div>
+      </div>
+
+      <div class="game-area" id="gameArea">
+        <div class="track-wrap">
+          <div class="track">
+            <div class="tick tick-100">100%</div>
+            <div class="tick tick-75">75%</div>
+            <div class="tick tick-50">50%</div>
+            <div class="tick tick-25">25%</div>
+            <div class="tick tick-0">0%</div>
+            <div class="danger-zone">PULL ZONE</div>
+            <button id="knob" class="knob" aria-label="Catapult volume slider" type="button">
+              <span></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="messages">
+          <p id="message">Drag the knob downward below 0%, then release.</p>
+          <p id="prediction">Fake prediction: 0%</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="playBtn" type="button">Play test sound</button>
+        <button id="resetBtn" type="button">Reset</button>
+      </div>
+
+      <audio id="audio" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
+      </audio>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
