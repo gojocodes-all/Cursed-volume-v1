@@ -7,10 +7,11 @@ const script = await readFile(new URL("../script.js", import.meta.url), "utf8");
 const styles = await readFile(new URL("../style.css", import.meta.url), "utf8");
 
 test("exposes the knob as a vertical slider with its initial value", () => {
-  const knob = html.match(/<button(?=[^>]*\bid="knob")[^>]*>/)?.[0];
+  const knob = html.match(/<div(?=[^>]*\bid="knob")[^>]*>/)?.[0];
 
   assert.ok(knob, "expected the volume knob button");
   assert.match(knob, /role="slider"/);
+  assert.match(knob, /tabindex="0"/);
   assert.match(knob, /aria-orientation="vertical"/);
   assert.match(knob, /aria-valuemin="0"/);
   assert.match(knob, /aria-valuemax="100"/);
@@ -40,7 +41,7 @@ test("documents and handles the standard slider keys", () => {
 test("keeps the accessible value synchronized and honors reduced motion", () => {
   assert.match(script, /setAttribute\("aria-valuenow", String\(volume\)\)/);
   assert.match(script, /setAttribute\("aria-valuetext", `\$\{volume\} percent`\)/);
-  assert.match(styles, /button:focus-visible/);
+  assert.match(styles, /\.knob:focus-visible/);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)/);
   assert.match(styles, /\.shake\s*{\s*animation: none;/);
 });

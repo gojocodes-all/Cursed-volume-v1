@@ -221,7 +221,8 @@ button {
   font: inherit;
 }
 
-button:focus-visible {
+.knob:focus-visible,
+.controls button:focus-visible {
   outline: 3px solid #ffffff;
   outline-offset: 4px;
 }

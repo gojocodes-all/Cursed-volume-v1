@@ -36,11 +36,11 @@
             <div class="tick tick-25">25%</div>
             <div class="tick tick-0">0%</div>
             <div class="danger-zone">PULL ZONE</div>
-            <button
+            <div
               id="knob"
               class="knob"
-              type="button"
               role="slider"
+              tabindex="0"
               aria-label="Catapult volume"
               aria-describedby="sliderInstructions"
               aria-orientation="vertical"
@@ -49,8 +49,8 @@
               aria-valuenow="0"
               aria-valuetext="0 percent"
             >
-              <span></span>
-            </button>
+              <span aria-hidden="true"></span>
+            </div>
           </div>
         </div>
 
