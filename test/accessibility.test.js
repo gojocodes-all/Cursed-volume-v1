@@ -9,7 +9,7 @@ const styles = await readFile(new URL("../style.css", import.meta.url), "utf8");
 test("exposes the knob as a vertical slider with its initial value", () => {
   const knob = html.match(/<div(?=[^>]*\bid="knob")[^>]*>/)?.[0];
 
-  assert.ok(knob, "expected the volume knob button");
+  assert.ok(knob, "expected the volume knob slider");
   assert.match(knob, /role="slider"/);
   assert.match(knob, /tabindex="0"/);
   assert.match(knob, /aria-orientation="vertical"/);
