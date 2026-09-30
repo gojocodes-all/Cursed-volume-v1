@@ -40,7 +40,44 @@ function bottomToVolume(bottom) {
 function setVolume(value) {
   volume = clamp(Math.round(value), 0, 100);
   volumeText.textContent = `${volume}%`;
+  knob.setAttribute("aria-valuenow", String(volume));
+  knob.setAttribute("aria-valuetext", `${volume} percent`);
   audio.volume = volume / 100;
+}
+
+function getKeyboardVolume(key) {
+  const changes = {
+    ArrowUp: 1,
+    ArrowRight: 1,
+    ArrowDown: -1,
+    ArrowLeft: -1,
+    PageUp: 10,
+    PageDown: -10,
+  };
+
+  if (key === "Home") return 0;
+  if (key === "End") return 100;
+  if (!(key in changes)) return null;
+
+  return clamp(volume + changes[key], 0, 100);
+}
+
+function setKeyboardVolume(value) {
+  stopAnimation();
+  gameArea.classList.remove("shake");
+  setVolume(value);
+  setKnobBottom(ZERO_BOTTOM + ((MAX_BOTTOM - ZERO_BOTTOM) * volume) / 100);
+  forceText.textContent = "0";
+  prediction.textContent = "Fake prediction: keyboard users outsmarted the catapult.";
+  setMessage(`Volume set to ${volume}% with the keyboard. Physics reluctantly allowed it.`);
+}
+
+function handleKnobKeydown(event) {
+  const nextVolume = getKeyboardVolume(event.key);
+  if (nextVolume === null) return;
+
+  event.preventDefault();
+  setKeyboardVolume(nextVolume);
 }
 
 function setMessage(text) {
@@ -186,6 +223,7 @@ knob.addEventListener("pointerdown", startDrag);
 knob.addEventListener("pointermove", drag);
 knob.addEventListener("pointerup", endDrag);
 knob.addEventListener("pointercancel", endDrag);
+knob.addEventListener("keydown", handleKnobKeydown);
 resetBtn.addEventListener("click", resetSlider);
 playBtn.addEventListener("click", toggleAudio);
 

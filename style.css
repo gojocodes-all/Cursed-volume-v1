@@ -221,6 +221,23 @@ button {
   font: inherit;
 }
 
+button:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 4px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .controls button {
   border: 1px solid rgba(34, 255, 136, 0.3);
   background: rgba(34, 255, 136, 0.09);
@@ -242,6 +259,12 @@ button {
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-4px); }
   75% { transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shake {
+    animation: none;
+  }
 }
 
 @media (max-width: 720px) {
