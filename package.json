@@ -1,0 +1,11 @@
+{
+  "name": "cursed-volume-v1",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  }
+}

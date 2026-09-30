@@ -21,7 +21,7 @@ The interface and simulation run entirely from the checked-in HTML, CSS, and Jav
 3. Wait for the simulated bounce to settle on a volume from 0% to 100%.
 4. Use **Reset** to return the control to 0%.
 
-Dragging uses Pointer Events, so the interaction works with a mouse, stylus, or touch input. The catapult itself does not currently provide keyboard adjustment; the audio and reset buttons remain ordinary keyboard-accessible buttons.
+Dragging uses Pointer Events, so the interaction works with a mouse, stylus, or touch input. Keyboard users can focus the knob and use the arrow keys for 1% adjustments, Page Up or Page Down for 10% adjustments, and Home or End for 0% or 100%. The knob exposes its current value and range as a vertical slider to assistive technology.
 
 ## How it works
 
@@ -46,6 +46,7 @@ The “Fake prediction” is intentionally random and does not determine the fin
 Keep the project dependency-free unless its purpose changes. After editing:
 
 ```bash
+npm test
 node --check script.js
 ```
 
@@ -54,10 +55,11 @@ Then open `index.html` and verify the following in both a narrow and wide viewpo
 - short pulls reset to 0%;
 - stronger pulls launch and eventually settle;
 - the displayed percentage stays between 0% and 100%;
+- keyboard controls update the visible and accessible values;
 - **Play test sound**, pause, and **Reset** respond correctly;
 - mouse/touch dragging does not scroll the track while the knob is held.
 
-There is currently no automated browser-test suite or package manifest.
+The Node.js test suite checks the slider's accessibility contract without adding runtime dependencies. Pointer physics and audio playback still require manual browser testing.
 
 ## Contributing
 

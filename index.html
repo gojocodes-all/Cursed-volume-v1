@@ -36,15 +36,31 @@
             <div class="tick tick-25">25%</div>
             <div class="tick tick-0">0%</div>
             <div class="danger-zone">PULL ZONE</div>
-            <button id="knob" class="knob" aria-label="Catapult volume slider" type="button">
-              <span></span>
-            </button>
+            <div
+              id="knob"
+              class="knob"
+              role="slider"
+              tabindex="0"
+              aria-label="Catapult volume"
+              aria-describedby="sliderInstructions"
+              aria-orientation="vertical"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+              aria-valuetext="0 percent"
+            >
+              <span aria-hidden="true"></span>
+            </div>
           </div>
         </div>
 
         <div class="messages">
           <p id="message">Drag the knob downward below 0%, then release.</p>
           <p id="prediction">Fake prediction: 0%</p>
+          <p id="sliderInstructions" class="sr-only">
+            Use the arrow keys to adjust by 1 percent, Page Up or Page Down to adjust by 10 percent,
+            or Home and End to jump to 0 or 100 percent.
+          </p>
         </div>
       </div>
 
